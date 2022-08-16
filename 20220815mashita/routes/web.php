@@ -23,8 +23,4 @@ Route::group(['middleware' => 'auth'],function() {
     Route::get('/todo/search', [TodoController::class, 'search']);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
