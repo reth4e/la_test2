@@ -18,6 +18,7 @@
 
 @section('todo-contents')
   @foreach ($todos as $todo)
+    @if ($user->id === $todo->user_id)
       <tr>
         <td>{{$todo->created_at}}</td>
         <form action="/update?id={{$todo->id}}" method="post">
@@ -47,6 +48,7 @@
           </form>
         </td>
       </tr>
+    @endif
   @endforeach
 @endsection
 
