@@ -62,3 +62,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# アプリケーション名
+概要説明（どんなアプリか）
+todoリストを管理する認証機能付きのアプリです。タグ機能を含めたタスクのCRUD操作及び検索ができます。
+< --- トップ画面の画像 ---- >
+![トップ画面](scsh_top.png)
+
+## 作成した目的
+概要説明（なんで作成したか）
+予定を記録して忘れないようにするために作成しました。
+
+## 機能一覧
+- todo一覧を閲覧する
+- 新たなtodoを作成する
+- todoを編集する
+- todoを削除する
+- todoを検索する
+- ログイン、ログアウトする
+- ユーザー登録する
+
+
+## 使用技術（実行環境）
+- Laravel　8.83.22
+- PHP 8.1.5
+
+## テーブル設計
+< --- 作成したテーブル設計の画像 ---- >
+![table](scsh_table.png)
+
+## ER図
+< --- 作成したER図の画像 ---- >
+![ER](er.drawio.png)
+
+## 他に記載することがあれば記述する
+使用OS: Windows10 64bit
