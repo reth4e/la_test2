@@ -49,7 +49,7 @@ class TodoController extends Controller
 
     public function create(TodoRequest $request)
     {
-        $form = $request->all(); //error
+        $form = $request->all(); //error user_id
         unset($form['_token']);
         Todo::create($form);
         return redirect('/');
