@@ -12,7 +12,7 @@
 <body class="font-sans antialised">
   <div class="container">
     <div class="card">
-      <div class="card_header">
+      <div class="card__header">
         <p class="title mb-15">@yield('title')</p>
         @if (count($errors) > 0)
           <ul>

@@ -32,15 +32,14 @@ class TodoController extends Controller
 
     public function search(Request $request)
     {
-        $todos = Todo::where('content', 'LIKE BINARY', "%{$request -> content}%")->get();
+        $todos = Todo::where('content', 'LIKE BINARY', "%{$request -> content}%")->where('tag_id',  'LIKE BINARY',"%{$request -> tag_id}%")->get(); //これでcontentとtag_idのand検索
         $user = Auth::user();
         $tags = Tag::all();
         $task = $request -> content;
-        //この$taskはクエリパラメータの値
         $tag_id = $request -> tag_id;
-        //この$tag_idによりviewファイル　search.blade.php内で検索の絞り込みを行う
+        //これらの$task、$tag_idはクエリパラメータの値
         $param = ['todos' => $todos, 
-            'user' =>$user, 
+            'user' => $user, 
             'tags' => $tags, 
             'task' => $task,
             'tag_id' => $tag_id];
@@ -49,10 +48,18 @@ class TodoController extends Controller
 
     public function create(TodoRequest $request)
     {
-        $form = $request->all(); //error user_id
+        // $form = $request->all(); //error user_idが設定されていない 0815
+        // $form->user_id = Auth::user()->id;とするとエラー　配列に値を入れようとしている
+        // unset($form['_token']);
+        // Todo::create($form);
+        $form = new Todo;
+        $form->user_id = $request->user()->id;
+        $form->tag_id = $request->tag_id; //この記述でuser_id,tag_idがセットされる
+        $form->content = $request->content;
         unset($form['_token']);
-        Todo::create($form);
-        return redirect('/');
+        $form->save();
+        // return redirect('/');
+        return back();
     }
 
     public function update(TodoRequest $request)
@@ -60,12 +67,14 @@ class TodoController extends Controller
         $form = $request->all();
         unset($form['_token']);
         Todo::where('id', $request->id)->update($form);
-        return redirect('/');
+        // return redirect('/');
+        return back();
     }
     
     public function delete(Request $request)
     {
         Todo::find($request->id)->delete();
-        return redirect('/');
+        return back();
+        // return redirect('/');
     }
 }

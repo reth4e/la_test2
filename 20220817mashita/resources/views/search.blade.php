@@ -18,13 +18,12 @@
 
 @section('todo-contents')
   @foreach ($todos as $todo)
-    @if ($tag_id === $todo -> tag_id)
       <tr>
         <td>{{$todo->created_at}}</td>
         <form action="/update?id={{$todo->id}}" method="post">
           @csrf
           <td>
-            <input type="text" value="{{$todo->content}}" name="content">
+            <input type="text" value="{{$todo->content}}" name="content" class="input-update">
           </td>
           <td>
             <select name="tag_id" class="select-tag">
@@ -48,7 +47,6 @@
           </form>
         </td>
       </tr>
-    @endif
   @endforeach
 @endsection
 

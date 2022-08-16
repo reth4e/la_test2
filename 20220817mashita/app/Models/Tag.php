@@ -12,4 +12,8 @@ class Tag extends Model
     protected $guarded = array('id');
 
     protected $fillable = ['content'];
+
+    public function todos(){
+		return $this->hasMany('App\Models\Todo');
+    }
 }
